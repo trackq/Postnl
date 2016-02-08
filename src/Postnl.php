@@ -274,10 +274,10 @@ class Postnl
      *
      * @see LabellingClient::generateLabel()
      */
-    public function generateLabel(ComplexTypes\Shipment $shipment, $confirm = true)
+    public function generateLabel(ComplexTypes\Shipment $shipment, $confirm = true, $printerType = 'GraphicFile|PDF')
     {
         // Prepare arguments.
-        $message = new ComplexTypes\LabellingMessage;
+        $message = new ComplexTypes\LabellingMessage($printerType);
         $customer = new ComplexTypes\Customer($this->customerNumber, $this->customerCode, $this->collectionLocation);
         $request = new ComplexTypes\GenerateLabelRequest($message, $customer, $shipment);
 
@@ -380,7 +380,7 @@ class Postnl
                         ->setErrorMsg($error->ErrorMsg)
                         ->setErrorNumber($error->ErrorNumber);
                 }
-
+                pp($exceptionData);
                 // Throw a CifException instead.
                 throw new ComplexTypes\CifException(new ComplexTypes\ArrayOfExceptionData($exceptionData));
             } else {
