@@ -1,5 +1,5 @@
 {
-    "name": "dividebv/postnl",
+    "name": "trackq/postnl",
     "description": "Library to connect to PostNL's SOAP service called CIF",
     "license": "GPL-2",
     "authors": [
